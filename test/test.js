@@ -12,8 +12,11 @@ describe("Pencil durability", () => {
 
     describe("Write function", () => {
         it("Write returns a string", () => {
-            expect(write()).to.equal("She sells sea shells");
-        })
-    })
-
-})
+            expect(write("She sells sea shells")).to.equal("She sells sea shells");
+        });
+        it("Write appends text", () => {
+            let originalText = write("She sells sea shells");
+            expect(write(" down by the sea shore")).to.equal(originalText + " down by the sea shore");
+        });
+    });
+});
