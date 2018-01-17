@@ -81,5 +81,11 @@ describe("Pencil durability", () => {
 
             expect(pencil.getLength()).to.equal(4);
         });
+        it("Sharpening replenishes durability", () => {
+            pencil.write("Text");
+            pencil.sharpen();
+
+            expect(pencil.getDurability()).to.equal(5);
+        });
     });
 });
