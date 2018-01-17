@@ -20,9 +20,13 @@ export class Pencil {
 
     write(text) {    
         this.paper.addText(text);
-        
-        for (let letter of text){
-            this.durability -= 1;
+
+        for (let letter of text) {
+            if(letter.toUpperCase() == letter) {
+                this.durability -= 2;
+            } else {
+                this.durability -= 1;
+            }
         }
     }
 
