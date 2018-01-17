@@ -47,5 +47,10 @@ describe("Pencil durability", () => {
 
             expect(pencil.getDurability()).to.equal(5);
         });
+        it("Return spaces when 0 durability", () => {
+            pencil.write("TExt");
+
+            expect(paper.getText()).to.equal("TEx ");
+        });
     });
 });
