@@ -22,7 +22,9 @@ export class Pencil {
         this.paper.addText(text);
 
         for (let letter of text) {
-            if(letter.toUpperCase() == letter) {
+            if(letter == '\n' || letter == ' ') {
+                this.durability -= 0;
+            } else if (letter.toUpperCase() == letter) {
                 this.durability -= 2;
             } else {
                 this.durability -= 1;

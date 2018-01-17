@@ -43,7 +43,7 @@ describe("Pencil durability", () => {
         });
         it("Spaces & new lines don't reduce durability", () => {
             pencil.write(" ");
-            pencil.write("/n");
+            pencil.write("\n");
 
             expect(pencil.getDurability()).to.equal(5);
         });
