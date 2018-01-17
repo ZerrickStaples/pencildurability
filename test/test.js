@@ -81,7 +81,7 @@ describe("Pencil durability", () => {
 
             expect(pencil.getLength()).to.equal(4);
         });
-        it("Sharpening replenishes durability", () => {
+        it("Sharpening restores durability", () => {
             pencil.write("Text");
             pencil.sharpen();
 
