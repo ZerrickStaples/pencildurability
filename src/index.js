@@ -15,13 +15,17 @@ export class Paper {
 export class Pencil {
     constructor(paper) {
         this.paper = paper;
+        this.durability = 5;
     }
 
     write(text) {    
         this.paper.addText(text);
+        for (let letter of text){
+            this.durability -= 1;
+        }
     }
 
     getDurability() {
-        
+        return this.durability;
     }
 }
