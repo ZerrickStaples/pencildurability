@@ -9,15 +9,16 @@ describe("Canary test", () => {
 });
 
 describe("Pencil durability", () => {
-    let paper;
-    let pencil;
-
-    beforeEach(() => {
-        paper = new Paper();
-        pencil = new Pencil(paper);
-    });
 
     describe("Write function", () => {
+        let paper;
+        let pencil;
+
+        beforeEach(() => {
+            paper = new Paper();
+            pencil = new Pencil(paper, 100);
+        });
+
         it("Write returns a string", () => {
             pencil.write("She sells sea shells");
 
@@ -31,6 +32,13 @@ describe("Pencil durability", () => {
         });
     });
     describe("Point degradation", () => {
+        let paper;
+        let pencil;
+
+        beforeEach(() => {
+            paper = new Paper();
+            pencil = new Pencil(paper, 5);
+        });
         it("Lowercase letter degrades durability by 1", () => {
             pencil.write("u");
 

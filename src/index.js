@@ -13,22 +13,24 @@ export class Paper {
 }
 
 export class Pencil {
-    constructor(paper) {
+    constructor(paper, durability) {
         this.paper = paper;
-        this.durability = 5;
+        this.durability = durability;
     }
 
     write(text) {    
-        this.paper.addText(text);
-
         for (let letter of text) {
-            if(letter == '\n' || letter == ' ') {
+            if (this.durability < 1 ) {
+                letter = ' ';
+            } else if (letter == '\n' || letter == ' ') {
                 this.durability -= 0;
             } else if (letter.toUpperCase() == letter) {
                 this.durability -= 2;
             } else {
                 this.durability -= 1;
-            }
+            } 
+
+            this.paper.addText(letter);
         }
     }
 
