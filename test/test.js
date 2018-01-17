@@ -36,5 +36,10 @@ describe("Pencil durability", () => {
 
             expect(pencil.getDurability()).to.equal(4);
         });
+        it("Uppercase letter degrades durability by 2", () => {
+            pencil.write("U");
+
+            expect(pencil.getDurability()).to.equal(3);
+        });
     });
 });

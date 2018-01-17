@@ -20,6 +20,7 @@ export class Pencil {
 
     write(text) {    
         this.paper.addText(text);
+        
         for (let letter of text){
             this.durability -= 1;
         }
