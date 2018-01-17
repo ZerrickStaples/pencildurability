@@ -1,7 +1,23 @@
-let paper = '';
+export class Paper {
+    constructor() {
+        this.text = '';
+    }
 
-export const write = (text) => {
-    paper += text;    
-    
-    return paper;
+    addText(text) {
+        this.text += text;
+    }
+
+    getText() {
+        return this.text;
+    }
+}
+
+export class Pencil {
+    constructor(paper) {
+        this.paper = paper;
+    }
+
+    write(text) {    
+        this.paper.addText(text);
+    }
 }

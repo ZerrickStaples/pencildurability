@@ -1,6 +1,6 @@
 import Mocha from 'mocha';
 import { expect } from 'chai';
-import { write } from '../src/index';
+import { Paper, Pencil } from '../src/index';
 
 describe("Canary test", () => {
     it("True equals true", () => {
@@ -9,14 +9,25 @@ describe("Canary test", () => {
 });
 
 describe("Pencil durability", () => {
+    let paper;
+    let pencil;
+
+    beforeEach(() => {
+        paper = new Paper();
+        pencil = new Pencil(paper);
+    });
 
     describe("Write function", () => {
         it("Write returns a string", () => {
-            expect(write("She sells sea shells")).to.equal("She sells sea shells");
+            pencil.write("She sells sea shells");
+
+            expect(paper.getText()).to.equal("She sells sea shells");
         });
         it("Write appends text", () => {
-            let originalText = write("She sells sea shells");
-            expect(write(" down by the sea shore")).to.equal(originalText + " down by the sea shore");
+            pencil.write("She sells sea shells");
+            pencil.write(" down by the sea shore");
+
+            expect(paper.getText()).to.equal("She sells sea shells down by the sea shore");
         });
     });
 });
