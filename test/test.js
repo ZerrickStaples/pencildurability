@@ -30,4 +30,11 @@ describe("Pencil durability", () => {
             expect(paper.getText()).to.equal("She sells sea shells down by the sea shore");
         });
     });
+    describe("Point degradation", () => {
+        it("Lowercase letter degrades durability by 1", () => {
+            pencil.write("u");
+
+            expect(pencil.getDurability()).to.equal(4);
+        });
+    });
 });

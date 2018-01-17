@@ -20,4 +20,8 @@ export class Pencil {
     write(text) {    
         this.paper.addText(text);
     }
+
+    getDurability() {
+        
+    }
 }
