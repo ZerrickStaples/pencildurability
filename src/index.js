@@ -13,9 +13,10 @@ export class Paper {
 }
 
 export class Pencil {
-    constructor(paper, durability) {
+    constructor(paper, durability, length) {
         this.paper = paper;
         this.durability = durability;
+        this.length = length;
     }
 
     write(text) {    
@@ -34,7 +35,15 @@ export class Pencil {
         }
     }
 
+    sharpen() {
+        
+    }
+
     getDurability() {
         return this.durability;
+    }
+
+    getLength() {
+        
     }
 }

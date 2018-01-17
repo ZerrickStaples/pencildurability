@@ -11,6 +11,7 @@ describe("Canary test", () => {
 describe("Pencil durability", () => {
 
     describe("Write function", () => {
+
         let paper;
         let pencil;
 
@@ -31,7 +32,9 @@ describe("Pencil durability", () => {
             expect(paper.getText()).to.equal("She sells sea shells down by the sea shore");
         });
     });
+
     describe("Point degradation", () => {
+
         let paper;
         let pencil;
 
@@ -39,6 +42,7 @@ describe("Pencil durability", () => {
             paper = new Paper();
             pencil = new Pencil(paper, 5);
         });
+
         it("Lowercase letter degrades durability by 1", () => {
             pencil.write("u");
 
@@ -59,6 +63,23 @@ describe("Pencil durability", () => {
             pencil.write("TExt");
 
             expect(paper.getText()).to.equal("TEx ");
+        });
+    });
+
+    describe("Sharpen function", () => {
+        let paper;
+        let pencil;
+
+        beforeEach(() => {
+            paper = new Paper();
+            pencil = new Pencil(paper, 5);
+        });
+        
+        it("Sharpening reduces pencil length", () => {
+            pencil.write("Text");
+            pencil.sharpen();
+
+            expect(pencil.getLength()).to.equal(4);
         });
     });
 });
