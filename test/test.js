@@ -72,7 +72,7 @@ describe("Pencil durability", () => {
 
         beforeEach(() => {
             paper = new Paper();
-            pencil = new Pencil(paper, 5);
+            pencil = new Pencil(paper, 5, 5);
         });
         
         it("Sharpening reduces pencil length", () => {

@@ -36,7 +36,7 @@ export class Pencil {
     }
 
     sharpen() {
-        
+        this.length -= 1;
     }
 
     getDurability() {
@@ -44,6 +44,6 @@ export class Pencil {
     }
 
     getLength() {
-        
+        return this.length;
     }
 }
