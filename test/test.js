@@ -87,5 +87,21 @@ describe("Pencil durability", () => {
 
             expect(pencil.getDurability()).to.equal(5);
         });
+        it("Sharpening when length is 0 doesn't restore durability", () =>{
+            pencil.write("Text");
+            pencil.sharpen();
+            pencil.write("Text");
+            pencil.sharpen();
+            pencil.write("Text");
+            pencil.sharpen();
+            pencil.write("Text");
+            pencil.sharpen();
+            pencil.write("Text");
+            pencil.sharpen();
+            pencil.write("Text");
+            pencil.sharpen();
+
+            expect(pencil.getDurability()).to.equal(0);
+        });
     });
 });
