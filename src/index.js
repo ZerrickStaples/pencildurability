@@ -37,8 +37,13 @@ export class Pencil {
     }
 
     sharpen() {
-        this.length -= 1;
-        this.durability = this.originalDurability;
+        if(this.length > 0){
+            this.length -= 1;
+            this.durability = this.originalDurability;
+        }
+        else {
+
+        }
     }
 
     getDurability() {
