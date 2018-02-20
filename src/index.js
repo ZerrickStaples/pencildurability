@@ -1,14 +1,14 @@
 export class Paper {
     constructor() {
-        this.text = '';
+        this.textOnPaper = '';
     }
 
     addText(text) {
-        this.text += text;
+        this.textOnPaper += text;
     }
 
-    getText() {
-        return this.text;
+    getTextOnPaper() {
+        return this.textOnPaper;
     }
 }
 
@@ -20,9 +20,9 @@ export class Pencil {
         this.length = length;
     }
 
-    write(text) {    
+    write(text) {
         for (let letter of text) {
-            if (this.durability < 1 ) {
+            if (this.durability < 1) {
                 letter = ' ';
             } else if (letter == '\n' || letter == ' ') {
                 this.durability -= 0;
@@ -30,18 +30,17 @@ export class Pencil {
                 this.durability -= 2;
             } else {
                 this.durability -= 1;
-            } 
+            }
 
             this.paper.addText(letter);
         }
     }
 
     sharpen() {
-        if(this.length > 0){
+        if (this.length > 0) {
             this.length -= 1;
             this.durability = this.originalDurability;
-        }
-        else {
+        } else {
 
         }
     }
@@ -52,5 +51,9 @@ export class Pencil {
 
     getLength() {
         return this.length;
+    }
+
+    erase(text) {
+
     }
 }
