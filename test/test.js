@@ -1,62 +1,62 @@
-export class Paper {
-    constructor() {
-        this.textOnPaper = '';
-    }
+import Mocha from 'mocha';
+import { expect } from 'chai';
+import { Paper, Pencil } from '../src/index';
 
-    addText(text) {
-        this.textOnPaper += text;
-    }
+describe("Canary test", () => {
+    it("True equals true", () => {
+        expect(true).to.equal(true);
+    });
+});
 
-    getTextOnPaper() {
-        return this.textOnPaper;
-    }
-}
+describe("Pencil durability", () => {
 
-export class Pencil {
-    constructor(paper, durability, length) {
-        this.paper = paper;
-        this.originalDurability = durability;
-        this.durability = durability;
-        this.length = length;
-    }
+    describe("Write function", () => {
+        let paper;
+        let pencil;
 
-    write(text) {
-        for (let letter of text) {
-            if (this.durability < 1) {
-                letter = ' ';
-            } else if (letter == '\n' || letter == ' ') {
-                this.durability -= 0;
-            } else if (letter.toUpperCase() == letter) {
-                this.durability -= 2;
-            } else {
-                this.durability -= 1;
-            }
+        beforeEach(() => {
+            paper = new Paper();
+            pencil = new Pencil(paper, 100);
+        });
 
-            this.paper.addText(letter);
-        }
-    }
+        it("Write returns a string", () => {
+            pencil.write("She sells sea shells");
 
-    sharpen() {
-        if (this.length > 0) {
-            this.length -= 1;
-            this.durability = this.originalDurability;
-        } else {
+            expect(paper.getTextOnPaper()).to.equal("She sells sea shells");
+        });
+        it("Write appends text", () => {
+            pencil.write("She sells sea shells");
+            pencil.write(" down by the sea shore");
 
-        }
-    }
+            expect(paper.getTextOnPaper()).to.equal("She sells sea shells down by the sea shore");
+        });
+    });
 
-    getDurability() {
-        return this.durability;
-    }
+    describe("Point degradation", () => {
+        let paper;
+        let pencil;
 
-    getLength() {
-        return this.length;
-    }
+        beforeEach(() => {
+            paper = new Paper();
+            pencil = new Pencil(paper, 5);
+        });
 
-    erase(text) {
+        it("Lowercase letter degrades durability by 1", () => {
+            pencil.write("u");
 
-    }
-}       });
+            expect(pencil.getDurability()).to.equal(4);
+        });
+        it("Uppercase letter degrades durability by 2", () => {
+            pencil.write("U");
+
+            expect(pencil.getDurability()).to.equal(3);
+        });
+        it("Spaces & new lines don't reduce durability", () => {
+            pencil.write(" ");
+            pencil.write("\n");
+
+            expect(pencil.getDurability()).to.equal(5);
+        });
         it("Return spaces when 0 durability", () => {
             pencil.write("TExt");
 

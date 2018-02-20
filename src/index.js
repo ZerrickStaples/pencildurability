@@ -54,6 +54,8 @@ export class Pencil {
     }
 
     erase(text) {
+        let newText = this.paper.textOnPaper.replace(text, ' '.repeat(text.length));
+        this.paper.textOnPaper = newText
 
     }
 }
