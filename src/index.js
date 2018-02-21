@@ -54,8 +54,9 @@ export class Pencil {
     }
 
     erase(text) {
-        let newText = this.paper.textOnPaper.replace(text, ' '.repeat(text.length));
-        this.paper.textOnPaper = newText
-
+        let lastIndexOfWordInstance = this.paper.textOnPaper.lastIndexOf(text);
+        let beforeChop = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text));
+        let afterChop = this.paper.textOnPaper.slice(lastIndexOfWordInstance + text.length, this.paper.textOnPaper.length);
+        this.paper.textOnPaper = beforeChop + ' '.repeat(text.length) + afterChop;
     }
 }

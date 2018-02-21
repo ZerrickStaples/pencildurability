@@ -111,6 +111,15 @@ describe("Pencil durability", () => {
             pencil.erase("woodchuck");
 
             expect(paper.getTextOnPaper()).to.equal("How much wood could a          ");
-        })
+        });
+        it("Erase most recent instance", () => {
+            let paper = new Paper();
+            let pencil = new Pencil(paper, 100, 5);
+
+            pencil.write("How much wood could a woodchuck chuck if a woodchuck could chuck wood");
+            pencil.erase("woodchuck");
+
+            expect(paper.getTextOnPaper()).to.equal("How much wood could a woodchuck chuck if a           could chuck wood");
+        });
     });
 });
