@@ -122,4 +122,15 @@ describe("Pencil durability", () => {
             expect(paper.getTextOnPaper()).to.equal("How much wood could a woodchuck chuck if a           could chuck wood");
         });
     });
+    describe("Eraser degradation", () => {
+        it("Erase function degrades eraser", () => {
+            let paper = new Paper();
+            let pencil = new Pencil(paper, 100, 5);
+
+            pencil.write("Text");
+            pencil.erase("Text");
+
+            expect(pencil.getEraserDurability()).to.equal(5);
+        });
+    });
 });

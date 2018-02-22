@@ -13,11 +13,12 @@ export class Paper {
 }
 
 export class Pencil {
-    constructor(paper, durability, length) {
+    constructor(paper, durability, length, eraserDurability) {
         this.paper = paper;
         this.originalDurability = durability;
         this.durability = durability;
         this.length = length;
+        this.eraserDurability = eraserDurability;
     }
 
     write(text) {
@@ -58,5 +59,9 @@ export class Pencil {
         let beforeChop = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text));
         let afterChop = this.paper.textOnPaper.slice(lastIndexOfWordInstance + text.length, this.paper.textOnPaper.length);
         this.paper.textOnPaper = beforeChop + ' '.repeat(text.length) + afterChop;
+    }
+
+    getEraserDurability() {
+
     }
 }
