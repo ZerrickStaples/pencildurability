@@ -58,6 +58,9 @@ export class Pencil {
         for (let letter of text) {
             this.eraserDurability -= 1;
         }
+        if (this.eraserDurability < 1) {
+            this.eraserDurability = 0;
+        }
         let beforeChop = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text));
         let spaces = ' '.repeat(text.length);
         let afterChop = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);

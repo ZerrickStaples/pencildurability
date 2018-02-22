@@ -132,5 +132,14 @@ describe("Pencil durability", () => {
 
             expect(pencil.getEraserDurability()).to.equal(1);
         });
+        it("Eraser durability can't be negative", () => {
+            let paper = new Paper();
+            let pencil = new Pencil(paper, 100, 5, 3);
+
+            pencil.write("text");
+            pencil.erase("text");
+
+            expect(pencil.getEraserDurability()).to.equal(0);
+        });
     });
 });
