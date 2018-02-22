@@ -161,6 +161,16 @@ describe("Pencil durability", () => {
             pencil.edit("Mark");
 
             expect(paper.getText()).to.equal("Mark");
-        })
+        });
+        it("Edit word in middle of sentence", () => {
+            let paper = new Paper();
+            let pencil = new Pencil(paper, 40, 5, 10);
+
+            pencil.write("An apple a day keeps the doctor away");
+            pencil.erase("apple");
+            pencil.edit("onion");
+
+            expect(paper.getText()).to.equal("An onion a day keeps the doctor away");
+        });
     });
 });
