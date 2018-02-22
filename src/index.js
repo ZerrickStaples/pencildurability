@@ -13,11 +13,12 @@ export class Paper {
 }
 
 export class Pencil {
-    constructor(paper, durability, length) {
+    constructor(paper, durability, length, eraserDurability) {
         this.paper = paper;
         this.originalDurability = durability;
         this.durability = durability;
         this.length = length;
+        this.eraserDurability = eraserDurability;
     }
 
     write(text) {

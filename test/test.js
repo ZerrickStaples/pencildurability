@@ -11,7 +11,6 @@ describe("Canary test", () => {
 describe("Pencil durability", () => {
 
     describe("Write function", () => {
-
         let paper;
         let pencil;
 
@@ -34,7 +33,6 @@ describe("Pencil durability", () => {
     });
 
     describe("Point degradation", () => {
-
         let paper;
         let pencil;
 
