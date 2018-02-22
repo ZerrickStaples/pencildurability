@@ -74,7 +74,7 @@ describe("Pencil durability", () => {
             paper = new Paper();
             pencil = new Pencil(paper, 5, 5);
         });
-        
+
         it("Sharpening reduces pencil length", () => {
             pencil.write("Text");
             pencil.sharpen();
@@ -87,7 +87,7 @@ describe("Pencil durability", () => {
 
             expect(pencil.getDurability()).to.equal(5);
         });
-        it("Sharpening when length is 0 doesn't restore durability", () =>{
+        it("Sharpening when length is 0 doesn't restore durability", () => {
             pencil.write("Text");
             pencil.sharpen();
             pencil.write("Text");
@@ -102,6 +102,17 @@ describe("Pencil durability", () => {
             pencil.sharpen();
 
             expect(pencil.getDurability()).to.equal(0);
+        });
+    });
+    describe("Eraser function", () => {
+        it("Erase a single instance", () => {
+            let paper = new Paper();
+            let pencil = new Pencil(paper, 100, 5);
+
+            pencil.write("How much wood could a woodchuck");
+            pencil.erase("woodchuck");
+
+            expect(paper.getText()).to.equal("How much wood could a          ");
         });
     });
 });
