@@ -78,6 +78,9 @@ export class Pencil {
 
     edit(text) {
         let spaceIndex = this.paper.textOnPaper.indexOf("  ");
+        if (spaceIndex != 0) {
+            spaceIndex += 1;
+        }
         for (let editTextIndex = 0; editTextIndex < text.length; editTextIndex++) {
             let replaceTextLetter = text.charAt(editTextIndex);
             this.paper.textOnPaper = this.paper.textOnPaper.substr(0, spaceIndex + editTextIndex) + replaceTextLetter + this.paper.textOnPaper.substr(spaceIndex + editTextIndex + 1);
