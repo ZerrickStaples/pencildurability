@@ -57,6 +57,5 @@ export class Pencil {
     erase(text) {
         let spaces = ' '.repeat(text.length);
         this.paper.textOnPaper = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.indexOf(text)) + spaces;
-        console.log(this.paper.textOnPaper);
     }
 }
