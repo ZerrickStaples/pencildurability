@@ -55,6 +55,9 @@ export class Pencil {
     }
 
     erase(text) {
+        for (let letter of text) {
+            this.eraserDurability -= 1;
+        }
         let beforeChop = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text));
         let spaces = ' '.repeat(text.length);
         let afterChop = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
@@ -62,6 +65,6 @@ export class Pencil {
     }
 
     getEraserDurability() {
-
+        return this.eraserDurability;
     }
 }
