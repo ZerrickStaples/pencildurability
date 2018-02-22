@@ -141,5 +141,14 @@ describe("Pencil durability", () => {
 
             expect(pencil.getEraserDurability()).to.equal(0);
         });
+        it("Returns letter when eraserDurabilty reaches 0", () => {
+            let paper = new Paper();
+            let pencil = new Pencil(paper, 100, 5, 3);
+
+            pencil.write("text");
+            pencil.erase("text");
+
+            expect(paper.getText()).to.equal("t   ");
+        });
     });
 });
