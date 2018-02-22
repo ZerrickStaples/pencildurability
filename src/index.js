@@ -77,6 +77,10 @@ export class Pencil {
     }
 
     edit(text) {
-
+        let spaceIndex = this.paper.textOnPaper.indexOf("  ");
+        for (let editTextIndex = 0; editTextIndex < text.length; editTextIndex++) {
+            let replaceTextLetter = text.charAt(editTextIndex);
+            this.paper.textOnPaper = this.paper.textOnPaper.substr(0, spaceIndex + editTextIndex) + replaceTextLetter + this.paper.textOnPaper.substr(spaceIndex + editTextIndex + 1);
+        }
     }
 }
