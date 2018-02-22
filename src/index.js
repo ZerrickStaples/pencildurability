@@ -75,4 +75,8 @@ export class Pencil {
     getEraserDurability() {
         return this.eraserDurability;
     }
+
+    edit(text) {
+
+    }
 }

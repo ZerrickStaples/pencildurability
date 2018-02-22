@@ -151,4 +151,16 @@ describe("Pencil durability", () => {
             expect(paper.getText()).to.equal("t   ");
         });
     });
+    describe("Edit function", () => {
+        it("Edit a word", () => {
+            let paper = new Paper();
+            let pencil = new Pencil(paper, 20, 5, 10);
+
+            pencil.write("Bill");
+            pencil.erase("Bill");
+            pencil.edit("Mark");
+
+            expect(paper.getText()).to.equal("Mark");
+        })
+    });
 });
