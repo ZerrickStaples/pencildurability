@@ -60,4 +60,8 @@ export class Pencil {
         let afterChop = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
         this.paper.textOnPaper = beforeChop + spaces + afterChop;
     }
+
+    getEraserDurability() {
+
+    }
 }
