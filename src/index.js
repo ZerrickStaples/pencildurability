@@ -55,16 +55,21 @@ export class Pencil {
     }
 
     erase(text) {
-        for (let letter of text) {
-            this.eraserDurability -= 1;
-        }
-        if (this.eraserDurability < 1) {
+        if (this.eraserDurability < text.length) {
+            let beforeChop = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text) + (text.length - this.eraserDurability));
+            let spaces = ' '.repeat(this.eraserDurability);
+            let afterChop = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
+
+            this.paper.textOnPaper = beforeChop + spaces + afterChop;
             this.eraserDurability = 0;
+        } else {
+            let beforeChop = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text));
+            let spaces = ' '.repeat(text.length);
+            let afterChop = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
+
+            this.paper.textOnPaper = beforeChop + spaces + afterChop;
+            this.eraserDurability -= text.length;
         }
-        let beforeChop = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text));
-        let spaces = ' '.repeat(text.length);
-        let afterChop = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
-        this.paper.textOnPaper = beforeChop + spaces + afterChop;
     }
 
     getEraserDurability() {
