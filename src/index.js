@@ -1,14 +1,14 @@
 export class Paper {
     constructor() {
-        this.text = '';
+        this.textOnPaper = '';
     }
 
     addText(text) {
-        this.text += text;
+        this.textOnPaper += text;
     }
 
     getText() {
-        return this.text;
+        return this.textOnPaper;
     }
 }
 
@@ -54,6 +54,8 @@ export class Pencil {
     }
 
     erase(text) {
-
+        let spaces = ' '.repeat(text.length);
+        this.paper.textOnPaper = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.indexOf(text)) + spaces;
+        console.log(this.paper.textOnPaper);
     }
 }
