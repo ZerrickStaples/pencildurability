@@ -55,7 +55,9 @@ export class Pencil {
     }
 
     erase(text) {
+        let beforeChop = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text));
         let spaces = ' '.repeat(text.length);
-        this.paper.textOnPaper = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.indexOf(text)) + spaces;
+        let afterChop = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
+        this.paper.textOnPaper = beforeChop + spaces + afterChop;
     }
 }
