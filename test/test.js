@@ -172,5 +172,15 @@ describe("Pencil durability", () => {
 
             expect(paper.getText()).to.equal("An onion a day keeps the doctor away");
         });
+        it("Return @ when letters clash", () => {
+            let paper = new Paper();
+            let pencil = new Pencil(paper, 40, 5, 10);
+
+            pencil.write("An apple a day keeps the doctor away");
+            pencil.erase("apple");
+            pencil.edit("artichoke");
+
+            expect(paper.getText()).to.equal("An artich@k@ay keeps the doctor away");
+        })
     });
 });
