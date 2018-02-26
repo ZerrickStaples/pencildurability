@@ -13,24 +13,25 @@ export class Paper {
 }
 
 export class Pencil {
-    constructor(paper, durability, length, eraserDurability) {
+    constructor(paper, pencilDurability, pencilLength, eraserDurability) {
         this.paper = paper;
-        this.originalDurability = durability;
-        this.durability = durability;
-        this.length = length;
+        this.originalDurability = pencilDurability;
+        this.pencilDurability = pencilDurability;
+        this.pencilLength = pencilLength;
         this.eraserDurability = eraserDurability;
     }
 
     write(text) {
         for (let letter of text) {
-            if (this.durability < 1) {
+
+            if (this.pencilDurability < 1) {
                 letter = ' ';
             } else if (letter == '\n' || letter == ' ') {
-                this.durability -= 0;
+                this.pencilDurability -= 0;
             } else if (letter.toUpperCase() == letter) {
-                this.durability -= 2;
+                this.pencilDurability -= 2;
             } else {
-                this.durability -= 1;
+                this.pencilDurability -= 1;
             }
 
             this.paper.addText(letter);
@@ -38,36 +39,35 @@ export class Pencil {
     }
 
     sharpen() {
-        if (this.length > 0) {
-            this.length -= 1;
-            this.durability = this.originalDurability;
-        } else {
+        if (this.pencilLength > 0) {
+            this.pencilLength -= 1;
 
+            this.pencilDurability = this.originalDurability;
         }
     }
 
     getDurability() {
-        return this.durability;
+        return this.pencilDurability;
     }
 
     getLength() {
-        return this.length;
+        return this.pencilLength;
     }
 
     erase(text) {
         if (this.eraserDurability < text.length) {
-            let beforeChop = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text) + (text.length - this.eraserDurability));
+            let textBeforeErase = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text) + (text.length - this.eraserDurability));
             let spaces = ' '.repeat(this.eraserDurability);
-            let afterChop = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
+            let textAfterErase = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
 
-            this.paper.textOnPaper = beforeChop + spaces + afterChop;
+            this.paper.textOnPaper = textBeforeErase + spaces + textAfterErase;
             this.eraserDurability = 0;
         } else {
-            let beforeChop = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text));
+            let textBeforeErase = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text));
             let spaces = ' '.repeat(text.length);
-            let afterChop = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
+            let textAfterErase = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
 
-            this.paper.textOnPaper = beforeChop + spaces + afterChop;
+            this.paper.textOnPaper = textBeforeErase + spaces + textAfterErase;
             this.eraserDurability -= text.length;
         }
     }
@@ -78,14 +78,18 @@ export class Pencil {
 
     edit(text) {
         let spaceIndex = this.paper.textOnPaper.indexOf("  ");
+
         if (spaceIndex != 0) {
             spaceIndex += 1;
         }
+
         for (let editTextIndex = 0; editTextIndex < text.length; editTextIndex++) {
             let replaceTextLetter = text.charAt(editTextIndex);
+
             if (this.paper.textOnPaper[spaceIndex + editTextIndex] !== " ") {
                 replaceTextLetter = '@';
             }
+
             this.paper.textOnPaper = this.paper.textOnPaper.substr(0, spaceIndex + editTextIndex) + replaceTextLetter + this.paper.textOnPaper.substr(spaceIndex + editTextIndex + 1);
         }
     }
