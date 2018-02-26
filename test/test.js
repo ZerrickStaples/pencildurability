@@ -103,19 +103,21 @@ describe("Pencil durability", () => {
         });
     });
     describe("Eraser function", () => {
-        it("Erase a single instance", () => {
-            let paper = new Paper();
-            let pencil = new Pencil(paper, 100, 5);
+        let paper;
+        let pencil;
 
+        beforeEach(() => {
+            paper = new Paper();
+            pencil = new Pencil(paper, 100, 5);
+        });
+
+        it("Erase a single instance", () => {
             pencil.write("How much wood could a woodchuck");
             pencil.erase("woodchuck");
 
             expect(paper.getText()).to.equal("How much wood could a          ");
         });
         it("Erase most recent instance", () => {
-            let paper = new Paper();
-            let pencil = new Pencil(paper, 100, 5);
-
             pencil.write("How much wood could a woodchuck chuck if a woodchuck could chuck wood");
             pencil.erase("woodchuck");
 
@@ -123,39 +125,42 @@ describe("Pencil durability", () => {
         });
     });
     describe("Eraser degradation", () => {
-        it("Erase function degrades eraser duarbility", () => {
-            let paper = new Paper();
-            let pencil = new Pencil(paper, 100, 5, 5);
+        let paper;
+        let pencil;
 
+        beforeEach(() => {
+            paper = new Paper();
+            pencil = new Pencil(paper, 100, 5, 5);
+
+        });
+        it("Erase function degrades eraser duarbility", () => {
             pencil.write("text");
             pencil.erase("text");
 
             expect(pencil.getEraserDurability()).to.equal(1);
         });
         it("Eraser durability can't be negative", () => {
-            let paper = new Paper();
-            let pencil = new Pencil(paper, 100, 5, 3);
-
-            pencil.write("text");
-            pencil.erase("text");
+            pencil.write("booths");
+            pencil.erase("booths");
 
             expect(pencil.getEraserDurability()).to.equal(0);
         });
         it("Returns letter when eraserDurabilty reaches 0", () => {
-            let paper = new Paper();
-            let pencil = new Pencil(paper, 100, 5, 3);
+            pencil.write("booths");
+            pencil.erase("booths");
 
-            pencil.write("text");
-            pencil.erase("text");
-
-            expect(paper.getText()).to.equal("t   ");
+            expect(paper.getText()).to.equal("b     ");
         });
     });
     describe("Edit function", () => {
-        it("Edit a word", () => {
-            let paper = new Paper();
-            let pencil = new Pencil(paper, 20, 5, 10);
+        let paper;
+        let pencil;
 
+        beforeEach(() => {
+            paper = new Paper();
+            pencil = new Pencil(paper, 40, 5, 10);
+        })
+        it("Edit a word", () => {
             pencil.write("Bill");
             pencil.erase("Bill");
             pencil.edit("Mark");
@@ -163,9 +168,6 @@ describe("Pencil durability", () => {
             expect(paper.getText()).to.equal("Mark");
         });
         it("Edit word in middle of sentence", () => {
-            let paper = new Paper();
-            let pencil = new Pencil(paper, 40, 5, 10);
-
             pencil.write("An apple a day keeps the doctor away");
             pencil.erase("apple");
             pencil.edit("onion");
@@ -173,9 +175,6 @@ describe("Pencil durability", () => {
             expect(paper.getText()).to.equal("An onion a day keeps the doctor away");
         });
         it("Return @ when letters clash", () => {
-            let paper = new Paper();
-            let pencil = new Pencil(paper, 40, 5, 10);
-
             pencil.write("An apple a day keeps the doctor away");
             pencil.erase("apple");
             pencil.edit("artichoke");
