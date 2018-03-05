@@ -1,17 +1,3 @@
-export class Paper {
-    constructor() {
-        this.textOnPaper = '';
-    }
-
-    addText(text) {
-        this.textOnPaper += text;
-    }
-
-    getText() {
-        return this.textOnPaper;
-    }
-}
-
 export class Pencil {
     constructor(paper, pencilDurability, pencilLength, eraserDurability) {
         this.paper = paper;
@@ -55,20 +41,24 @@ export class Pencil {
     }
 
     erase(text) {
+        let textOnPaper = this.paper.textOnPaper;
+
         if (this.eraserDurability < text.length) {
-            let textBeforeErase = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text) + (text.length - this.eraserDurability));
+            let textBeforeErase = textOnPaper.slice(0, textOnPaper.lastIndexOf(text) + (text.length - this.eraserDurability));
             let spaces = ' '.repeat(this.eraserDurability);
-            let textAfterErase = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
+            let textAfterErase = textOnPaper.slice(textOnPaper.lastIndexOf(text) + text.length, textOnPaper.length);
 
-            this.paper.textOnPaper = textBeforeErase + spaces + textAfterErase;
+            textOnPaper = textBeforeErase + spaces + textAfterErase;
             this.eraserDurability = 0;
+            this.paper.textOnPaper = textOnPaper;
         } else {
-            let textBeforeErase = this.paper.textOnPaper.slice(0, this.paper.textOnPaper.lastIndexOf(text));
+            let textBeforeErase = textOnPaper.slice(0, textOnPaper.lastIndexOf(text));
             let spaces = ' '.repeat(text.length);
-            let textAfterErase = this.paper.textOnPaper.slice(this.paper.textOnPaper.lastIndexOf(text) + text.length, this.paper.textOnPaper.length);
+            let textAfterErase = textOnPaper.slice(textOnPaper.lastIndexOf(text) + text.length, textOnPaper.length);
 
-            this.paper.textOnPaper = textBeforeErase + spaces + textAfterErase;
+            textOnPaper = textBeforeErase + spaces + textAfterErase;
             this.eraserDurability -= text.length;
+            this.paper.textOnPaper = textOnPaper;
         }
     }
 
@@ -77,7 +67,8 @@ export class Pencil {
     }
 
     edit(text) {
-        let spaceIndex = this.paper.textOnPaper.indexOf("  ");
+        let textOnPaper = this.paper.textOnPaper;
+        let spaceIndex = textOnPaper.indexOf("  ");
 
         if (spaceIndex != 0) {
             spaceIndex += 1;
@@ -86,11 +77,12 @@ export class Pencil {
         for (let editTextIndex = 0; editTextIndex < text.length; editTextIndex++) {
             let replaceTextLetter = text.charAt(editTextIndex);
 
-            if (this.paper.textOnPaper[spaceIndex + editTextIndex] !== " ") {
+            if (textOnPaper[spaceIndex + editTextIndex] !== " ") {
                 replaceTextLetter = '@';
             }
 
-            this.paper.textOnPaper = this.paper.textOnPaper.substr(0, spaceIndex + editTextIndex) + replaceTextLetter + this.paper.textOnPaper.substr(spaceIndex + editTextIndex + 1);
+            textOnPaper = textOnPaper.substr(0, spaceIndex + editTextIndex) + replaceTextLetter + textOnPaper.substr(spaceIndex + editTextIndex + 1);
+            this.paper.textOnPaper = textOnPaper;
         }
     }
 }
